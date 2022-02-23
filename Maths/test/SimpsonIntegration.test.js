@@ -1,7 +1,7 @@
 import { integralEvaluation } from '../SimpsonIntegration'
 
 let coverage = null
-beforeAll(()=>{
+beforeAll(() => {
   coverage = new Array(13).fill(false)
 })
 
