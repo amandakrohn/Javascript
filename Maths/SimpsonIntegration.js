@@ -21,18 +21,18 @@
 *
 */
 
-function integralEvaluation (N, a, b, func) {
+function integralEvaluation (N, a, b, func, coverage) {
   // Check if N is an even integer
   let isNEven = true
-  if (N % 2 !== 0) {isNEven = false}
+  if (N % 2 !== 0) {coverage[0] = true; isNEven = false}
 
-  if (!Number.isInteger(N) || Number.isNaN(a) || Number.isNaN(b)) { throw new TypeError('Expected integer N and finite a, b') }
-  if (!isNEven) { throw Error('N is not an even number') }
-  if (N <= 0) { throw Error('N has to be >= 2') }
+  if (!Number.isInteger(N) || Number.isNaN(a) || Number.isNaN(b)) { coverage[1] = true; throw new TypeError('Expected integer N and finite a, b') }
+  if (!isNEven) { coverage[2] = true; throw Error('N is not an even number') }
+  if (N <= 0) { coverage[3] = true; throw Error('N has to be >= 2') }
 
   // Check if a < b
-  if (a > b) { throw Error('a must be less or equal than b') }
-  if (a === b) return 0
+  if (a > b) { coverage[4] = true; throw Error('a must be less or equal than b') }
+  if (a === b) { coverage[5] = true; return 0}
 
   // Calculate the step h
   const h = (b - a) / N
@@ -44,10 +44,10 @@ function integralEvaluation (N, a, b, func) {
   // Find the sum {f(x0) + 4*f(x1) + 2*f(x2) + ... + 2*f(xN-2) + 4*f(xN-1) + f(xN)}
   let temp
   for (let i = 0; i < N + 1; i++) {
-    if (i === 0) temp = func(xi)
-    else if(i === N) temp = func(xi)
-    else if (i % 2 === 0) temp = 2 * func(xi)
-    else temp = 4 * func(xi)
+    if (i === 0) {coverage[6] = true;  temp = func(xi)}
+    else if(i === N) {coverage[7] = true; temp = func(xi)}
+    else if (i % 2 === 0) {coverage[8] = true; temp = 2 * func(xi)}
+    else {coverage[9] = true; temp = 4 * func(xi)}
 
     pointsArray.push(temp)
     xi += h
@@ -56,12 +56,12 @@ function integralEvaluation (N, a, b, func) {
   // Calculate the integral
   let result = h / 3
   temp = 0
-  for (let i = 0; i < pointsArray.length; i++) temp += pointsArray[i]
+  for (let i = 0; i < pointsArray.length; i++) {coverage[10] = true; temp += pointsArray[i]}
 
   result *= temp
 
-  if (Number.isNaN(result)) { throw Error("Result is NaN. The input interval doesn't belong to the functions domain") }
-
+  if (Number.isNaN(result)) { coverage[11] = true; throw Error("Result is NaN. The input interval doesn't belong to the functions domain") }
+  coverage[12] = true;
   return result
 }
 
