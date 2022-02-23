@@ -11,3 +11,5 @@ jobs:
           # file types to ignore
           skip: "*.json,*.yml,DIRECTORY.md"
           ignore_words_list: "ba,esy,yse"
+          # Only warn about problems. All errors and warnings are annotated in Pull Requests, but it will act like everything was fine anyway. 
+          only_warn: 1
