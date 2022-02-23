@@ -38,3 +38,28 @@ Our language JavaScript is using exceptions and exceptions are present in one of
 The documentation for the analysed functions leaves a bit of thought to an external reader to understand what each branch is responsible for. Some functions like the converters are easy to understand even without a specific documentation since the switch structure and general knowledge of what the function does is stronger. 
 
 The understanding of the different branches of the `integralEvaluation()` function is also good. Some of the if statements are documented with a dedicated while others uses easy naming of the variables to make it easy to understand the purpose. Some comments above a bloc of if statement is not super declarative by itself but with knowledge of how the numerical method of interest works combined with a well written comment for the whole algorithm in the main function the understanding of the branch is good.
+
+### Task 1: DIY
+1. Our tool for HexToBinary.js can be modified in a way that can cover ternary operations. Since we use a Boolean Array-like data structure to record if a branch is ever taken in tests or not, we can customize it in any way we want.
+2. The limitation of our tool is scalability. If we wanted to test coverage for all functions, we would have to make modifications to each and evry function call.
+3. Yes, they are consistent with the automated capability of jest.
+For instance jest reported lines 4-14,19-26,31-32,37-41,52-53 are uncovered.
+And our tool reported that:
+      Branch 0 taken: false
+      Branch 1 taken: false
+      Branch 2 taken: false
+      Branch 3 taken: false
+      Branch 4 taken: true
+      Branch 5 taken: false
+      Branch 6 taken: false
+      Branch 7 taken: false
+      Branch 8 taken: true
+      Branch 9 taken: false
+      Branch 10 taken: true
+      Branch 11 taken: false
+      Branch 12 taken: false
+      Branch 13 taken: true
+      Branch 14 taken: true
+      Branch 15 taken: true
+      Branch 16 taken: false
+These result correspond to the result in the automated coverage test.
