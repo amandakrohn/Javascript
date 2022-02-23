@@ -20,7 +20,32 @@ test('Should return the integral of f(x) = log(x) + Pi*x^3 in [5, 12] to be equa
   expect(Number(result.toPrecision(12))).toBe(15809.9141543)
 })
 
+test('Should throw Error because N is not even integer', () => {
+  expect(() => integralEvaluation(5, 1, 3, (x) => { return Math.sqrt(x) }, coverage)).toThrow('N is not an even number')
+})
+
+test('Should throw Error because N is not an integer', () => {
+  expect(() => integralEvaluation(4.5, 1, 3, (x) => { return Math.sqrt(x) }, coverage)).toThrow('Expected integer N and finite a, b')
+})
+
+test('Should throw Error because N should be positive', () => {
+  expect(() => integralEvaluation(-2, 1, 3, (x) => { return Math.sqrt(x) }, coverage)).toThrow('N has to be >= 2')
+})
+
+test('Should throw Error because a is bigger than b', () => {
+  expect(() => integralEvaluation(64, 3, 1, (x) => { return Math.sqrt(x) }, coverage)).toThrow('a must be less or equal than b')
+})
+
+test('Should return 0 directly because a is same as b', () => {
+  const result = integralEvaluation(128, 5, 5, (x) => { return Math.log(x) + Math.PI * Math.pow(x, 3) }, coverage)
+  expect(Number(result)).toBe(0)
+})
+
+test('Should throw Error because a does not belong to the function domain, where it should be greater than 0 in sqrt', () => {
+  expect(() => integralEvaluation(64, -1, 1, (x) => { return Math.sqrt(x) }, coverage)).toThrow("Result is NaN. The input interval doesn't belong to the functions domain")
+})
+
 afterAll(() => {
-  for (let i = 0; i < coverage.length; i++) { console.log('Branch ' + i + ' taken: ' + coverage[i]) }
+  // for (let i = 0; i < coverage.length; i++) { console.log('Branch ' + i + ' taken: ' + coverage[i]) }
   console.log(coverage)
 })
