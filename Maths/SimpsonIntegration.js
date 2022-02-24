@@ -23,16 +23,15 @@
 
 function integralEvaluation (N, a, b, func) {
   // Check if N is an even integer
-  let isNEven = (!(N % 2))
+  const isNEven = (!(N % 2))
 
-  
   if (!Number.isInteger(N) || Number.isNaN(a) || Number.isNaN(b)) { throw new TypeError('Expected integer N and finite a, b') }
   if (!isNEven) { throw Error('N is not an even number') }
   if (N <= 0) { throw Error('N has to be >= 2') }
 
   // Check if a < b
-  //if (a > b) { throw Error('a must be less or equal than b') }
-  //if (a === b) return 0
+  // if (a > b) { throw Error('a must be less or equal than b') }
+  // if (a === b) return 0
 
   // Calculate the step h
   const h = (b - a) / N
@@ -48,23 +47,20 @@ function integralEvaluation (N, a, b, func) {
   pointsArray.push(temp)
   xi += h
   for (let i = 1; i < N; i += 2) {
-      // odd
-      temp = 4 * func(xi)
-      pointsArray.push(temp)
-      xi += h
-      // even
-      temp = 2 * func(xi)
-      pointsArray.push(temp)
-      xi += h
+    // odd
+    temp = 4 * func(xi)
+    pointsArray.push(temp)
+    xi += h
+    // even
+    temp = 2 * func(xi)
+    pointsArray.push(temp)
+    xi += h
   }
   // drop the last i === N, rewrite with the correct one
   pointsArray.pop()
   xi -= h
   temp = func(xi)
   pointsArray.push(temp)
-
-
-
 
   // Calculate the integral
   let result = h / 3

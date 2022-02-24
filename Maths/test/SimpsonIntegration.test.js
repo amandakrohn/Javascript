@@ -27,9 +27,9 @@ test('Should throw Error because N should be positive', () => {
   expect(() => integralEvaluation(-2, 1, 3, (x) => { return Math.sqrt(x) })).toThrow('N has to be >= 2')
 })
 
-/*test('Should throw Error because a is bigger than b', () => {
+/* test('Should throw Error because a is bigger than b', () => {
   expect(() => integralEvaluation(64, 3, 1, (x) => { return Math.sqrt(x) })).toThrow('a must be less or equal than b')
-})*/
+}) */
 
 test('Should return 0 directly because a is same as b', () => {
   const result = integralEvaluation(128, 5, 5, (x) => { return Math.log(x) + Math.PI * Math.pow(x, 3) })
@@ -40,6 +40,6 @@ test('Should throw Error because a does not belong to the function domain, where
   expect(() => integralEvaluation(64, -1, 1, (x) => { return Math.sqrt(x) })).toThrow("Result is NaN. The input interval doesn't belong to the functions domain")
 })
 
-/*test('Should throw Error because N is not an integer', () => {
+/* test('Should throw Error because N is not an integer', () => {
   expect(() => integralEvaluation(4.5, 1, 3, (x) => { return Math.sqrt(x) })).toThrow('Invalid input')
-})*/
+}) */
