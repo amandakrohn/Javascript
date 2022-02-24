@@ -82,7 +82,7 @@ function caesarCipherEncodeAndDecodeEngine (inStr, numShifted) {
 }
 
 function cycleCharacterInContext (character, lowerLimit, upperLimit) {
-  let modVal = upperLimit - lowerLimit + 1
+  const modVal = upperLimit - lowerLimit + 1
   let result = 0
 
   if (character < lowerLimit) {
