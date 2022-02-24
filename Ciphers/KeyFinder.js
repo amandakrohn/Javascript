@@ -70,78 +70,45 @@ function caesarCipherEncodeAndDecodeEngine (inStr, numShifted) {
     result = charCode
 
     if ((charCode >= 48 && charCode <= 57)) {
-      if (shiftedCharCode < 48) {
-        let diff = Math.abs(48 - 1 - shiftedCharCode) % 10
-
-        while (diff >= 10) {
-          diff = diff % 10
-        }
-        document.getElementById('diffID').innerHTML = diff
-
-        shiftedCharCode = 57 - diff
-
-        result = shiftedCharCode
-      } else if (shiftedCharCode >= 48 && shiftedCharCode <= 57) {
-        result = shiftedCharCode
-      } else if (shiftedCharCode > 57) {
-        let diff = Math.abs(57 + 1 - shiftedCharCode) % 10
-
-        while (diff >= 10) {
-          diff = diff % 10
-        }
-        document.getElementById('diffID').innerHTML = diff
-
-        shiftedCharCode = 48 + diff
-
-        result = shiftedCharCode
-      }
+      result = cycleCharacterInContext(shiftedCharCode, 48, 57)
     } else if ((charCode >= 65 && charCode <= 90)) {
-      if (shiftedCharCode <= 64) {
-        let diff = Math.abs(65 - 1 - shiftedCharCode) % 26
-
-        while ((diff % 26) >= 26) {
-          diff = diff % 26
-        }
-        shiftedCharCode = 90 - diff
-        result = shiftedCharCode
-      } else if (shiftedCharCode >= 65 && shiftedCharCode <= 90) {
-        result = shiftedCharCode
-      } else if (shiftedCharCode > 90) {
-        let diff = Math.abs(shiftedCharCode - 1 - 90) % 26
-
-        while ((diff % 26) >= 26) {
-          diff = diff % 26
-        }
-        shiftedCharCode = 65 + diff
-        result = shiftedCharCode
-      }
+      result = cycleCharacterInContext(shiftedCharCode, 65, 90)
     } else if ((charCode >= 97 && charCode <= 122)) {
-      if (shiftedCharCode <= 96) {
-        let diff = Math.abs(97 - 1 - shiftedCharCode) % 26
-
-        while ((diff % 26) >= 26) {
-          diff = diff % 26
-        }
-        shiftedCharCode = 122 - diff
-        result = shiftedCharCode
-      } else if (shiftedCharCode >= 97 && shiftedCharCode <= 122) {
-        result = shiftedCharCode
-      } else if (shiftedCharCode > 122) {
-        let diff = Math.abs(shiftedCharCode - 1 - 122) % 26
-
-        while ((diff % 26) >= 26) {
-          diff = diff % 26
-        }
-        shiftedCharCode = 97 + diff
-        result = shiftedCharCode
-      }
+      result = cycleCharacterInContext(shiftedCharCode, 97, 122)
     }
     outStr = outStr + String.fromCharCode(parseInt(result))
   }
   return outStr
 }
 
-export { keyFinder }
+function cycleCharacterInContext (character, lowerLimit, upperLimit) {
+  let modVal = upperLimit - lowerLimit + 1
+  let result = 0
+
+  if (character < lowerLimit) {
+    let diff = Math.abs(lowerLimit - 1 - character) % modVal
+
+    while ((diff % modVal) >= modVal) {
+      diff = diff % modVal
+    }
+    character = upperLimit - diff
+    result = character
+  } else if (character >= lowerLimit && character <= upperLimit) {
+    result = character
+  } else if (character > upperLimit) {
+    let diff = Math.abs(character - 1 - upperLimit) % modVal
+
+    while ((diff % modVal) >= modVal) {
+      diff = diff % modVal
+    }
+    character = lowerLimit + diff
+    result = character
+  }
+
+  return result
+}
+
+export { keyFinder, caesarCipherEncodeAndDecodeEngine }
 
 // > keyFinder('test')
 // 0
