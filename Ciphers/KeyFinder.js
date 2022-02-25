@@ -76,7 +76,6 @@ function caesarCipherEncodeAndDecodeEngine (inStr, numShifted) {
         while (diff >= 10) {
           diff = diff % 10
         }
-        document.getElementById('diffID').innerHTML = diff
 
         shiftedCharCode = 57 - diff
 
@@ -89,7 +88,6 @@ function caesarCipherEncodeAndDecodeEngine (inStr, numShifted) {
         while (diff >= 10) {
           diff = diff % 10
         }
-        document.getElementById('diffID').innerHTML = diff
 
         shiftedCharCode = 48 + diff
 
@@ -141,7 +139,7 @@ function caesarCipherEncodeAndDecodeEngine (inStr, numShifted) {
   return outStr
 }
 
-export { keyFinder }
+export { caesarCipherEncodeAndDecodeEngine, keyFinder }
 
 // > keyFinder('test')
 // 0
