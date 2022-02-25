@@ -1,6 +1,5 @@
 import binaryToHex from '../BinaryToHex'
 
-
 describe('BinaryToHex', () => {
   let coverage = null
   beforeAll(() => {
@@ -34,5 +33,4 @@ describe('BinaryToHex', () => {
   afterAll(() => {
     console.log('BinaryToHex coverage:', coverage)
   })
-
 })
