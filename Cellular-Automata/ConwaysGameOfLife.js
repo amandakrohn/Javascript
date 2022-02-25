@@ -11,69 +11,69 @@ The Game of Life is a cellular automaton devised by the British mathematician Jo
 /**
  * Generates the next generation for a given state of Conway's Game of Life.
  */
-export function newGeneration(cells, coverage) {
+export function newGeneration (cells, coverage) {
   const nextGeneration = []
   for (let i = 0; i < cells.length; i++) {
     const nextGenerationRow = []
     for (let j = 0; j < cells[i].length; j++) {
       // Get the number of living neighbours
       let neighbourCount = 0
-      if (i > 0 && j > 0){
+      if (i > 0 && j > 0) {
         neighbourCount += cells[i - 1][j - 1]
-        coverage[0] = true;
+        coverage[0] = true
       } else coverage[1] = true
 
       if (i > 0) {
         neighbourCount += cells[i - 1][j]
-        coverage[2] = true;
+        coverage[2] = true
       } else coverage[3] = true
 
       if (i > 0 && j < cells[i].length - 1) {
         neighbourCount += cells[i - 1][j + 1]
-        coverage[4] = true;
+        coverage[4] = true
       } else coverage[5] = true
 
       if (j > 0) {
         neighbourCount += cells[i][j - 1]
-        coverage[6] = true;
+        coverage[6] = true
       } else coverage[7] = true
 
-      if (j < cells[i].length - 1) { 
+      if (j < cells[i].length - 1) {
         neighbourCount += cells[i][j + 1]
-        coverage[8] = true;
+        coverage[8] = true
       } else coverage[9] = true
 
       if (i < cells.length - 1 && j > 0) {
         neighbourCount += cells[i + 1][j - 1]
-        coverage[10] = true;
+        coverage[10] = true
       } else coverage[11] = true
 
       if (i < cells.length - 1) {
         neighbourCount += cells[i + 1][j]
-        coverage[12] = true;
+        coverage[12] = true
       } else coverage[13] = true
 
       if (i < cells.length - 1 && j < cells[i].length - 1) {
         neighbourCount += cells[i + 1][j + 1]
-        coverage[14] = true;
+        coverage[14] = true
       } else coverage[15] = true
 
       // Decide whether the cell is alive or dead
       const alive = cells[i][j] === 1
       if ((alive && neighbourCount >= 2 && neighbourCount <= 3) || (!alive && neighbourCount === 3)) {
         nextGenerationRow.push(1)
-        coverage[16] = true;
+        coverage[16] = true
       } else {
         nextGenerationRow.push(0)
-        coverage[17] = true;
+        coverage[17] = true
       }
     }
     nextGeneration.push(nextGenerationRow)
   }
 
   for (let i = 0; i < coverage.length; i++) {
-    console.log('Branch ' + i + ' taken: ' + coverage[i]) 
+    console.log('Branch ' + i + ' taken: ' + coverage[i])
   }
-  
+
   return nextGeneration
 }
