@@ -95,7 +95,7 @@ function caesarCipherEncodeAndDecodeEngine (inStr, numShifted, coverage) {
           coverage[4] = true
           diff = diff % 10
         }
-        
+
         shiftedCharCode = 48 + diff
 
         result = shiftedCharCode
