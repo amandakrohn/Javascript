@@ -6,7 +6,6 @@ import { maxProductOfThree } from '../MaxProductOfThree'
 * 2. Multiplication with positive values are allowed
 * 3. Multiplication with negative values are allowed
 * 4. The input values does not have to be sorted
-* 5. The input values must be numbers
 */
 describe('MaxProductOfThree', () => {
   // Tests requirement 1
