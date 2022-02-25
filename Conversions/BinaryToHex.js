@@ -8,24 +8,27 @@ const hexLookup = (bin) => {
   if (binary.length < 4) {
     binary = pad(binary, 4)
   }
-  switch (binary) {
-    case '0000': return '0'
-    case '0001': return '1'
-    case '0010': return '2'
-    case '0011': return '3'
-    case '0100': return '4'
-    case '0101': return '5'
-    case '0110': return '6'
-    case '0111': return '7'
-    case '1000': return '8'
-    case '1001': return '9'
-    case '1010': return 'A'
-    case '1011': return 'B'
-    case '1100': return 'C'
-    case '1101': return 'D'
-    case '1110': return 'E'
-    case '1111': return 'F'
-  }
+
+  // Map to do a lookup and return the hexadecimal equivalent
+  const lookup = new Map()
+  lookup.set('0000', '0')
+  lookup.set('0001', '1')
+  lookup.set('0010', '2')
+  lookup.set('0011', '3')
+  lookup.set('0100', '4')
+  lookup.set('0101', '5')
+  lookup.set('0110', '6')
+  lookup.set('0111', '7')
+  lookup.set('1000', '8')
+  lookup.set('1001', '9')
+  lookup.set('1010', 'A')
+  lookup.set('1011', 'B')
+  lookup.set('1100', 'C')
+  lookup.set('1101', 'D')
+  lookup.set('1110', 'E')
+  lookup.set('1111', 'F')
+
+  return lookup.get(binary)
 }
 const binaryToHex = (binaryString) => {
   /*
