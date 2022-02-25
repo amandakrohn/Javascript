@@ -9,7 +9,7 @@ const hexLookup = (bin) => {
     binary = pad(binary, 4)
   }
 
-  //Map to do a lookup and return the hexadecimal equivalent
+  // Map to do a lookup and return the hexadecimal equivalent
   const lookup = new Map()
   lookup.set('0000', '0')
   lookup.set('0001', '1')
