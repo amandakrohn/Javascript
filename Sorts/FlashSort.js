@@ -10,8 +10,8 @@ export function flashSort (arr) {
   const n = arr.length
   const m = ~~(0.45 * n)
   const l = new Array(m)
-  let max = getMax(arr, n); 
-  let min = getMin(arr, n);
+  const max = getMax(arr, n)
+  const min = getMin(arr, n)
 
   if (min === arr[max]) {
     return arr
@@ -58,12 +58,12 @@ export function flashSort (arr) {
   }
 
   // insertion
-  var sortedArray = insertion(arr, n, hold)
+  const sortedArray = insertion(arr, n, hold)
   return sortedArray
 }
 
 // Insertion to the array
-function insertion(arr, length, hold) {
+function insertion (arr, length, hold) {
   for (let j = 1; j < length; j++) {
     hold = arr[j]
     let i = j - 1
@@ -75,8 +75,8 @@ function insertion(arr, length, hold) {
   return arr
 }
 
-//Max function finds and returns the index with the maximum value in an array
-function getMax(arr, length) {
+// Max function finds and returns the index with the maximum value in an array
+function getMax (arr, length) {
   let max = 0
   for (let i = 1; i < length; i++) {
     if (arr[i] > arr[max]) {
@@ -86,15 +86,15 @@ function getMax(arr, length) {
   return max
 }
 
-//Min function finds and returns the minimum value in an array
-function getMin(arr, length) {
+// Min function finds and returns the minimum value in an array
+function getMin (arr, length) {
   let min = arr[0]
   for (let i = 1; i < length; i++) {
     if (arr[i] < min) {
       min = arr[i]
     }
   }
-  return min;
+  return min
 }
 
 /**
