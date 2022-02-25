@@ -5,7 +5,7 @@ import {
 describe('MaxProductOfThree', () => {
   let coverage = null
   beforeAll(() => {
-    coverage = new Array(5).fill(false)
+    coverage = new Array(8).fill(false)
   })
 
   it('expects to throw error for array with only 2 numbers', () => {
