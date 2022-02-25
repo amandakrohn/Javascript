@@ -1,6 +1,19 @@
 import { DoubleLinkedList } from '../DoublyLinkedList'
 
+/**
+ * Requirements:
+ * 1. Can add new elements
+ * 2. Can insert elements at any (valid) position
+ * 3. Can remove elements at any (valid) position
+ * 4. Can get index of a given element
+ * 5. Can determine if a given element is present in the list
+ * 6. Can check list size (empty and size)
+ * 7. Can convert list to string, array
+ * 8. Can iterate over the list
+ * 9. Can get head and tail
+ */
 describe('DoubleLinkedList', () => {
+  // Tests requirement: 1
   it('Check append', () => {
     const list = new DoubleLinkedList()
 
@@ -11,6 +24,7 @@ describe('DoubleLinkedList', () => {
     expect(list.getTail().element).toEqual(2)
   })
 
+  // Tests requirement: 2
   it('Check insert', () => {
     const list = new DoubleLinkedList()
 
@@ -21,6 +35,7 @@ describe('DoubleLinkedList', () => {
     expect(list.getTail().element).toEqual(20)
   })
 
+  // Tests requirement: 3
   it('Check removeAt', () => {
     const list = new DoubleLinkedList()
 
@@ -35,6 +50,7 @@ describe('DoubleLinkedList', () => {
     expect(list.getTail().element).toEqual(40)
   })
 
+  // Tests requirement: 3
   it('Check delete', () => {
     const list = new DoubleLinkedList()
 
@@ -45,6 +61,7 @@ describe('DoubleLinkedList', () => {
     expect(list.getHead().element).toEqual(40)
   })
 
+  // Tests requirement: 3
   it('Check deleteTail', () => {
     const list = new DoubleLinkedList()
 
@@ -55,6 +72,7 @@ describe('DoubleLinkedList', () => {
     expect(list.getTail().element).toEqual(10)
   })
 
+  // Tests requirement: 7
   it('Check toString', () => {
     const list = new DoubleLinkedList()
 
@@ -62,6 +80,7 @@ describe('DoubleLinkedList', () => {
     expect(list.toString()).toEqual('20')
   })
 
+  // Tests requirement: 6
   it('Check isEmpty', () => {
     const list = new DoubleLinkedList()
 
@@ -71,6 +90,7 @@ describe('DoubleLinkedList', () => {
     expect(list.isEmpty()).toEqual(false)
   })
 
+  // Tests requirement: 6
   it('Check size', () => {
     const list = new DoubleLinkedList()
     expect(list.size()).toBe(0)
@@ -82,6 +102,7 @@ describe('DoubleLinkedList', () => {
     expect(list.size()).toBe(1)
   })
 
+  // Tests requirement: 7
   it('Check toArray', () => {
     const list = new DoubleLinkedList()
     list.append(1)
@@ -91,6 +112,7 @@ describe('DoubleLinkedList', () => {
     expect(listArray).toEqual([1, 2])
   })
 
+  // Tests requirement: 9
   it('Check getHead', () => {
     const list = new DoubleLinkedList()
     expect(list.getHead()).toEqual(null)
@@ -100,6 +122,7 @@ describe('DoubleLinkedList', () => {
     expect(list.getHead()).toBeInstanceOf(Object)
   })
 
+  // Tests requirement: 8
   it('Check Iterator', () => {
     const list = new DoubleLinkedList()
 
@@ -123,5 +146,49 @@ describe('DoubleLinkedList', () => {
       expect(item).toBe(arr[count])
       count++
     }
+  })
+
+  // Tests requirement: 2
+  it('Check insert as head when head is not null', () => {
+    const list = new DoubleLinkedList()
+
+    list.append(1)
+    list.insert(0, 2)
+    expect(list.getHead().element).toBe(2)
+    expect(list.getTail().element).toBe(1)
+  })
+
+  // Tests requirement: 2
+  it('Check insert when inserting in the middle of the list', () => {
+    const list = new DoubleLinkedList()
+
+    list.append(1)
+    list.append(3)
+    list.append(4)
+    list.insert(1, 2)
+
+    const iterate = list.iterator()
+
+    expect(iterate.next().value).toBe(1)
+    expect(iterate.next().value).toBe(2)
+    expect(iterate.next().value).toBe(3)
+    expect(iterate.next().value).toBe(4)
+  })
+
+  // Tests requirement: 3
+  it('Check removeAt when removing in the middle of the list', () => {
+    const list = new DoubleLinkedList()
+
+    list.append(1)
+    list.append(2)
+    list.append(2)
+    list.append(3)
+    list.removeAt(1)
+
+    const iterate = list.iterator()
+
+    expect(iterate.next().value).toBe(1)
+    expect(iterate.next().value).toBe(2)
+    expect(iterate.next().value).toBe(3)
   })
 })
