@@ -19,31 +19,32 @@ export function maxProductOfThree (arrayItems, coverage) {
   let min1 = arrayItems[0]
   let min2 = -1
   for (let i = 1; i < n; i++) {
+    coverage[2] = true
     if (arrayItems[i] > max1) {
-      coverage[2] = true
+      coverage[3] = true
       max3 = max2
       max2 = max1
       max1 = arrayItems[i]
     } else if (max2 === -1 || arrayItems[i] > max2) {
-      coverage[3] = true
+      coverage[4] = true
       max3 = max2
       max2 = arrayItems[i]
     } else if (max3 === -1 || arrayItems[i] > max3) {
-      coverage[4] = true
+      coverage[5] = true
       max3 = arrayItems[i]
     } else {
-      coverage[5] = true
+      coverage[6] = true
     }
 
     if (arrayItems[i] < min1) {
-      coverage[6] = true
+      coverage[7] = true
       min2 = min1
       min1 = arrayItems[i]
     } else if (min2 === -1 || arrayItems[i] < min2) {
-      coverage[7] = true
+      coverage[8] = true
       min2 = arrayItems[i]
     } else {
-      coverage[8] = true
+      coverage[9] = true
     }
   }
 
